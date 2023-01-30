@@ -14,7 +14,6 @@ final class RMTabBarViewController: UITabBarController {
 
         view.backgroundColor = .red
         setUpTabs()
-
         
     }
     
