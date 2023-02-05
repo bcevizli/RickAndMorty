@@ -9,27 +9,39 @@ import UIKit
 
 /// Controller to show and search for characters
 
-final class RMCharacterViewController: UIViewController {
-
+final class RMCharacterViewController: UIViewController, RMCharacterListViewDelegate {
+    
+    
+   
+    
+    private let characterListView = RMCharacterListView()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         title = "Characters"
-        
-        let request = RMRequest(endPoint: .character, queryParameters: [URLQueryItem(name: "name", value: "rick"), URLQueryItem(name: "status", value: "alive")])
-        
-        print(request.url)
-            
-        RMService.share.execute(request, expecting: RMCharacter.self) { result in
-            switch result {
-            case .success(let success):
-                <#code#>
-            case .failure(let failure):
-                <#code#>
-            }
-        }
+        setUpView()
     
-
-  
+        
+        
+    }
+    
+    private func setUpView() {
+        characterListView.delegate = self
+        view.addSubview(characterListView)
+        NSLayoutConstraint.activate([characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+        characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+                                     characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
+        
+   
+        }
+    // MARK: - RMCharacterListViewDelegate
+    func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: RMCharacter) {
+        
+            let viewModel = RMCharacterDetailViewViewModel(character: character)
+            let detailVC = RMCharacterDetailViewController(viewModel: viewModel)
+            detailVC.navigationItem.largeTitleDisplayMode = .never 
+            navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
