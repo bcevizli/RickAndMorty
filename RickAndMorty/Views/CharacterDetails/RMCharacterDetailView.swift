@@ -60,6 +60,7 @@ final class RMCharacterDetailView: UIView {
         collectionView.register(RMCharacterPhotoCollectionViewCell.self, forCellWithReuseIdentifier: RMCharacterPhotoCollectionViewCell.cellIdentifier)
         collectionView.register(RMCharacterInfoCollectionViewCell.self, forCellWithReuseIdentifier: RMCharacterInfoCollectionViewCell.cellIdentifier)
         collectionView.register(RMCharacterEpisodeCollectionViewCell.self, forCellWithReuseIdentifier: RMCharacterEpisodeCollectionViewCell.cellIdentifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }
     private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection{
