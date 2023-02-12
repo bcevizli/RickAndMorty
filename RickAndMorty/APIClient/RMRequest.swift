@@ -17,7 +17,7 @@ final class RMRequest {
         static let baseUrl = "https://rickandmortyapi.com/api"
     }
     /// Desired Endpoint
-    private let endPoint: RMEndPoint
+    let endPoint: RMEndPoint
     
     /// Path Components for API, if any
     private let pathComponents: [String]
@@ -121,6 +121,9 @@ final class RMRequest {
     
 extension RMRequest {
     static let listCharactersRequest = RMRequest(endPoint: .character)
+    static let listEpisodesRequest = RMRequest(endPoint: .episode)
+    static let listLocationsRequest = RMRequest(endPoint: .location)
+
 }
 
 
